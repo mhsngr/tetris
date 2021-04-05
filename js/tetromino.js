@@ -46,12 +46,43 @@ class Tetromino {
         console.log(this.x, this.y);
         for(let i = 0; i < this.shape.length; i++) {
             for(let j = 0; j < this.shape[i].length; j++) {
-                document.querySelector(`.board > .row.y${this.y + i} > .col.x${this.x + j}`).innerText = `${this.shape[i][j]}`;
+                if (this.shape[i][j] > 0) {
+                    document.querySelector(`.board > .row.y${this.y + i} > .col.x${this.x + j}`).innerText = `${this.shape[i][j]}`;
+                }
             }
         }
     }
-    move() {
+    moveLeft() {
+        if (this.validMove(-1, 0)) {
+            this.x--;
+        }
+    }
+    moveRight() {
+        if (this.validMove(0, 1)) {
+            this.y++;
+        }
+    }
+    moveDown() {
+        if (this.validMove(1, 0)) {
+            this.x++;
+        }
+    }
+    rotate() {
 
+    }
+    validMove(dx, dy) {
+        for(let i = 0; i < this.shape.length; i++) {
+            for(let j = 0; j < this.shape[i].length; j++) {
+                let x = this.x + j + dx;
+                let y = this.y + i + dy;
+                if (this.shape[i][j] > 0) {
+                    if (board.grid[y][x] > 0) return false;
+                    if (x < 0 || x > board.grid[y].length - 1) return false;
+                    if (y < 0 || y > board.grid.length - 1) return false;
+                }
+            }
+        }
+        return true;
     }
     fix() {
         
