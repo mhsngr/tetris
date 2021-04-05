@@ -68,7 +68,18 @@ class Tetromino {
         }
     }
     rotate() {
-
+        for (let i = 0; i < this.shape.length; i++) {
+            for (let j = 0; j < i; j++) {
+                [this.shape[j][i], this.shape[i][j]] = [this.shape[i][j], this.shape[j][i]];
+            }
+        }
+        this.shape.forEach(row => row.reverse());
+        if(this.x < this.shape.length) {
+            while (!this.validMove(0, 0)) this.x++;
+        }
+        if(this.x > this.shape.length) {
+            while (!this.validMove(0, 0)) this.x--;
+        }
     }
     validMove(dx, dy) {
         for(let i = 0; i < this.shape.length; i++) {
