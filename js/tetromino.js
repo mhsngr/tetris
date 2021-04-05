@@ -44,6 +44,11 @@ class Tetromino {
     }
     draw() {
         console.log(this.x, this.y);
+        for(let i = 0; i < this.shape.length; i++) {
+            for(let j = 0; j < this.shape[i].length; j++) {
+                document.querySelector(`.board > .row.y${this.y + i} > .col.x${this.x + j}`).innerText = `${this.shape[i][j]}`;
+            }
+        }
     }
     move() {
 

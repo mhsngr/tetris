@@ -28,6 +28,3 @@ class Board {
         }
     }
 }
-
-board = new Board(10, 20);
-board.draw();
