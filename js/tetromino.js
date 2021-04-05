@@ -47,7 +47,7 @@ class Tetromino {
         for (let i = 0; i < this.shape.length; i++) {
             for (let j = 0; j < this.shape[i].length; j++) {
                 if (this.shape[i][j] > 0) {
-                    document.querySelector(`.board > .row.y${this.y + i} > .col.x${this.x + j}`).innerText = `${this.shape[i][j]}`;
+                    document.querySelector(`.board > .row.y${this.y + i} > .col.x${this.x + j}`).className = `col x${this.x + j} c${this.shape[i][j]}`;
                 }
             }
         }

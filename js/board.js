@@ -9,10 +9,11 @@ class Board {
         this.nextTetromino = new Tetromino();
     }
     draw() {
+        console.clear();
         console.table(this.grid);
         for (let i = 0; i < this.grid.length; i++) {
             for (let j = 0; j < this.grid[i].length; j++) {
-                document.querySelector(`.board > .row.y${i} > .col.x${j}`).innerText = `${this.grid[i][j]}`;
+                document.querySelector(`.board > .row.y${i} > .col.x${j}`).className = `col x${j} c${this.grid[i][j]}`;
             }
         }
         this.currentTetromino.draw();

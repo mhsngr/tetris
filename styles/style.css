@@ -1,4 +1,46 @@
+.board {
+    width: 300px;
+    height: 600px;
+    border: 1px solid black;
+}
+
 .row {
     display: flex;
     flex-direction: row;
+}
+
+.col {
+    height: 30px;
+    width: 30px;
+}
+
+.c1 {
+    background-color: cyan;
+}
+.c1 {
+    background-color: cyan;
+}
+
+.c2 {
+    background-color: blue;
+}
+
+.c3 {
+    background-color: orange;
+}
+
+.c4 {
+    background-color: yellow;
+}
+
+.c5 {
+    background-color: green;
+}
+
+.c6 {
+    background-color: purple;
+}
+
+.c7 {
+    background-color: red;
 }
