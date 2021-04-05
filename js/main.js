@@ -13,7 +13,10 @@ function keyboard(event) {
             game.board.currentTetromino.moveRight();
             break;
         case 40:
-            game.board.currentTetromino.moveDown();
+            if(!game.board.currentTetromino.softDrop()) {
+                clearInterval(game.run);
+                console.log('game over');
+            }
             break;
         case 38:
             game.board.currentTetromino.rotate();

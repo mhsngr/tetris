@@ -33,13 +33,20 @@ class Board {
         this.drawInfo();
     }
     clearRows() {
+        let rows = 0;
         this.grid.forEach((row, y) => {
             if (row.every(value => value > 0)) {
                 this.grid.splice(y, 1);
                 this.grid.unshift(Array(col).fill(0));
-                game.rows++;
+                rows++;
             }
         });
+        game.rows += rows;
+        if (rows === 1) game.score += 40 * (game.level + 1)
+        if (rows === 2) game.score += 100 * (game.level + 1)
+        if (rows === 3) game.score += 300 * (game.level + 1)
+        if (rows === 4) game.score += 1200 * (game.level + 1)
+        game.levelUp();
     }
     drawInfo() {
         document.querySelector('.score').innerText = game.score;

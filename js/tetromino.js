@@ -63,7 +63,21 @@ class Tetromino {
         }
         game.board.draw()
     }
-    moveDown() {
+    softDrop() {
+        if (game.board.currentTetromino.validMove(0, 1)) {
+            game.board.currentTetromino.y++;
+            game.score++;
+        }
+        if (!game.board.currentTetromino.validMove(0, 1)) {
+            if (game.board.currentTetromino.y === 0) return false;
+            game.board.lock();
+            game.board.clearRows();
+        }
+        game.board.draw();
+        game.board.drawInfo();
+        return true;
+    }
+    drop() {
         if (game.board.currentTetromino.validMove(0, 1)) {
             game.board.currentTetromino.y++;
         }
