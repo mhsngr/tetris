@@ -43,7 +43,6 @@ class Tetromino {
         this.y = 0;
     }
     draw() {
-        console.log(this.x, this.y);
         for (let i = 0; i < this.shape.length; i++) {
             for (let j = 0; j < this.shape[i].length; j++) {
                 if (this.shape[i][j] > 0) {
@@ -56,16 +55,25 @@ class Tetromino {
         if (this.validMove(-1, 0)) {
             this.x--;
         }
+        game.board.draw()
     }
     moveRight() {
         if (this.validMove(1, 0)) {
             this.x++;
         }
+        game.board.draw()
     }
     moveDown() {
-        if (this.validMove(0, 1)) {
-            this.y++;
+        if (game.board.currentTetromino.validMove(0, 1)) {
+            game.board.currentTetromino.y++;
         }
+        if (!game.board.currentTetromino.validMove(0, 1)) {
+            if (game.board.currentTetromino.y === 0) return false;
+            game.board.lock();
+            game.board.clearRows();
+        }
+        game.board.draw();
+        return true;
     }
     rotate() {
         for (let i = 0; i < this.shape.length; i++) {
@@ -80,6 +88,7 @@ class Tetromino {
         if (this.x > this.shape.length) {
             while (!this.validMove(0, 0)) this.x--;
         }
+        game.board.draw()
     }
     validMove(dx, dy) {
         for (let i = 0; i < this.shape.length; i++) {
@@ -87,9 +96,9 @@ class Tetromino {
                 let x = this.x + j + dx;
                 let y = this.y + i + dy;
                 if (this.shape[i][j] > 0) {
-                    if (y < 0 || y > board.grid.length - 1) return false;
-                    if (x < 0 || x > board.grid[y].length - 1) return false;
-                    if (board.grid[y][x] > 0) return false;               
+                    if (y < 0 || y > game.board.grid.length - 1) return false;
+                    if (x < 0 || x > game.board.grid[y].length - 1) return false;
+                    if (game.board.grid[y][x] > 0) return false;               
                 }
             }
         }

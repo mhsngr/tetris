@@ -24,20 +24,38 @@ class Board {
                 let x = this.currentTetromino.x + j;
                 let y = this.currentTetromino.y + i;
                 if (this.currentTetromino.shape[i][j] > 0) {
-                    console.log(this.currentTetromino.shape[i][j]);
                     this.grid[y][x] = this.currentTetromino.shape[i][j];
                 }
             }
         }
         this.currentTetromino = this.nextTetromino;
         this.nextTetromino = new Tetromino();
+        this.drawInfo();
     }
     clearRows() {
         this.grid.forEach((row, y) => {
             if (row.every(value => value > 0)) {
                 this.grid.splice(y, 1);
                 this.grid.unshift(Array(col).fill(0));
+                game.rows++;
             }
         });
+    }
+    drawInfo() {
+        document.querySelector('.score').innerText = game.score;
+        document.querySelector('.level').innerText = game.level;
+        document.querySelector('.lines').innerText = game.rows;
+        for (let i = 0; i < 4; i++) {
+            for (let j = 0; j < 4; j++) {
+                document.querySelector(`.next > .row.y${i} > .col.x${j}`).className = `col x${j} c0`;
+            }
+        }
+        for (let i = 0; i < this.nextTetromino.shape.length; i++) {
+            for (let j = 0; j < this.nextTetromino.shape.length; j++) {
+                if (this.nextTetromino.shape[i][j] > 0) {
+                    document.querySelector(`.next > .row.y${i} > .col.x${j}`).className = `col x${j} c${this.nextTetromino.shape[i][j]}`;
+                }
+            }
+        }
     }
 }

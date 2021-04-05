@@ -1,33 +1,23 @@
-
 const col = 10;
 const row = 20;
 
-const board = new Board(col, row);
-board.draw();
+const game = new Game();
+game.start();
 
 function keyboard(event) {
     switch (event.keyCode) {
         case 37:
-            board.currentTetromino.moveLeft();
-            board.draw();
+            game.board.currentTetromino.moveLeft();
             break;
         case 39:
-            board.currentTetromino.moveRight();
-            board.draw();
+            game.board.currentTetromino.moveRight();
             break;
         case 40:
-            board.currentTetromino.moveDown();
-            if (!board.currentTetromino.validMove(0, 1)) {
-                board.lock();
-                board.clearRows();
-            }
-            board.draw();
+            game.board.currentTetromino.moveDown();
             break;
         case 38:
-            board.currentTetromino.rotate();
-            board.draw();
+            game.board.currentTetromino.rotate();
             break;
     }
 }
-
 document.addEventListener('keyup', keyboard);
