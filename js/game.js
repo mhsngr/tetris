@@ -31,6 +31,6 @@ class Game {
         if (12 >= this.level >= 10) this.speed = 80;
         if (15 >= this.level >= 13) this.speed = 60;
         if (18 >= this.level >= 16) this.speed = 40;
-        if (his.level >= 19) this.speed = 20;
+        if (this.level >= 19) this.speed = 20;
     }
 }
