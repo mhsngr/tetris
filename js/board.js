@@ -31,4 +31,12 @@ class Board {
         this.currentTetromino = this.nextTetromino;
         this.nextTetromino = new Tetromino();
     }
+    clearRows() {
+        this.grid.forEach((row, y) => {
+            if (row.every(value => value > 0)) {
+                this.grid.splice(y, 1);
+                this.grid.unshift(Array(col).fill(0));
+            }
+        });
+    }
 }

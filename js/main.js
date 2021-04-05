@@ -1,5 +1,8 @@
 
-const board = new Board(10, 20);
+const col = 10;
+const row = 20;
+
+const board = new Board(col, row);
 board.draw();
 
 function keyboard(event) {
@@ -16,6 +19,7 @@ function keyboard(event) {
             board.currentTetromino.moveDown();
             if (!board.currentTetromino.validMove(0, 1)) {
                 board.lock();
+                board.clearRows();
             }
             board.draw();
             break;
