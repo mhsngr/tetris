@@ -5,6 +5,7 @@ class Game {
         this.score = 0;
         this.top = 0;
         this.speed = 720;
+        this.stats = [0, 0, 0, 0, 0, 0, 0]
     }
     start() {
         this.board = new Board(col, row);
@@ -40,12 +41,13 @@ class Game {
         clearInterval(game.run);
         document.removeEventListener('keydown', controls);
         document.addEventListener('keydown', start);
-        document.querySelector('.overlay > .score').innerText = game.score.toString().padStart(6, 0);
+        document.querySelector('.end-score').innerText = game.score.toString().padStart(6, 0);
         document.querySelector('.overlay').className = 'overlay game-over-screen';
         if (this.score > this.top) this.top = this.score;
         this.level = 0;
         this.rows = 0;
         this.score = 0;
         this.speed = 720;
+        this.stats = [0, 0, 0, 0, 0, 0, 0]
     }
 }

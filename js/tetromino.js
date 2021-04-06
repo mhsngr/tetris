@@ -76,7 +76,6 @@ class Tetromino {
             game.board.clearRows();
         }
         game.board.draw();
-        game.board.drawInfo();
         return true;
     }
     drop() {

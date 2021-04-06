@@ -15,6 +15,7 @@ class Board {
             }
         }
         this.currentTetromino.draw();
+        this.drawInfo();  
     }
     lock() {
         for (let i = 0; i < this.currentTetromino.shape.length; i++) {
@@ -26,9 +27,10 @@ class Board {
                 }
             }
         }
+        if (this.currentTetromino.shape[0][0] > 0) game.stats[this.currentTetromino.shape[0][0] - 1]++;
+        if (this.currentTetromino.shape[1][0] > 0) game.stats[this.currentTetromino.shape[1][0] - 1]++;
         this.currentTetromino = Object.assign(this.currentTetromino, this.nextTetromino);
         this.nextTetromino = new Tetromino();
-        this.drawInfo();
     }
     clearRows() {
         let rows = 0;
@@ -47,10 +49,13 @@ class Board {
         game.levelUp();
     }
     drawInfo() {
-        document.querySelector('.info > .top').innerText = game.top.toString().padStart(6, 0);
-        document.querySelector('.info > .score').innerText = game.score.toString().padStart(6, 0);
+        document.querySelector('.top').innerText = game.top.toString().padStart(6, 0);
+        document.querySelector('.score').innerText = game.score.toString().padStart(6, 0);
         document.querySelector('.level').innerText = game.level.toString().padStart(2, 0);
         document.querySelector('.lines').innerText = game.rows.toString().padStart(2, 0);
+        for (let i = 1; i <= game.stats.length; i++) {
+            document.querySelector(`.stat${i}`).innerText = game.stats[i - 1].toString().padStart(3, 0);
+        }
         if (this.nextTetromino.shape[0][0] > 0) document.querySelector('.next').className = `next n${this.nextTetromino.shape[0][0]}`;
         if (this.nextTetromino.shape[1][0] > 0) document.querySelector('.next').className = `next n${this.nextTetromino.shape[1][0]}`;
     }
