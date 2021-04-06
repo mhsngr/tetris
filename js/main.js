@@ -23,4 +23,4 @@ function keyboard(event) {
             break;
     }
 }
-document.addEventListener('keyup', keyboard);
+document.addEventListener('keydown', keyboard);
