@@ -38,9 +38,11 @@ const shapes = [
 
 class Tetromino {
     constructor() {
-        this.shape = shapes[Math.floor(Math.random() * 7)];
-        this.x = 3;
-        this.y = 0;
+        this.shape = shapes[Math.floor(Math.random() * 7)].map(y => y.slice());
+        if (this.shape.length < 3) this.x = 4;
+        else this.x = 3;
+        if (this.shape[1].length > 3) this.y = -1;
+        else this.y = 0;
     }
     draw() {
         for (let i = 0; i < this.shape.length; i++) {
@@ -96,6 +98,9 @@ class Tetromino {
             }
         }
         this.shape.forEach(row => row.reverse());
+        if (this.y < 0) {
+            while (!this.validMove(0, 0)) this.y++;
+        }
         if (this.x < this.shape.length) {
             while (!this.validMove(0, 0)) this.x++;
         }

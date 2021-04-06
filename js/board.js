@@ -28,7 +28,7 @@ class Board {
                 }
             }
         }
-        this.currentTetromino = this.nextTetromino;
+        this.currentTetromino = Object.assign(this.currentTetromino, this.nextTetromino);
         this.nextTetromino = new Tetromino();
         this.drawInfo();
     }

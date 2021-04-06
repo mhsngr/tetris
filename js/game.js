@@ -32,5 +32,7 @@ class Game {
         if (15 >= this.level >= 13) this.speed = 60;
         if (18 >= this.level >= 16) this.speed = 40;
         if (this.level >= 19) this.speed = 20;
+        clearInterval(game.run);
+        this.run = setInterval(this.drop, this.speed);
     }
 }
