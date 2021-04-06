@@ -9,8 +9,6 @@ class Board {
         this.nextTetromino = new Tetromino();
     }
     draw() {
-        console.clear();
-        console.table(this.grid);
         for (let i = 0; i < this.grid.length; i++) {
             for (let j = 0; j < this.grid[i].length; j++) {
                 document.querySelector(`.board > .row.y${i} > .col.x${j}`).className = `col x${j} c${this.grid[i][j]}`;
@@ -49,13 +47,11 @@ class Board {
         game.levelUp();
     }
     drawInfo() {
-        document.querySelector('.score').innerText = game.score.toString().padStart(6, 0);
+        document.querySelector('.info > .top').innerText = game.top.toString().padStart(6, 0);
+        document.querySelector('.info > .score').innerText = game.score.toString().padStart(6, 0);
         document.querySelector('.level').innerText = game.level.toString().padStart(2, 0);
         document.querySelector('.lines').innerText = game.rows.toString().padStart(2, 0);
         if (this.nextTetromino.shape[0][0] > 0) document.querySelector('.next').className = `next n${this.nextTetromino.shape[0][0]}`;
         if (this.nextTetromino.shape[1][0] > 0) document.querySelector('.next').className = `next n${this.nextTetromino.shape[1][0]}`;
-    }
-    zeros(number, size) {
-
     }
 }

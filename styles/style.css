@@ -12,6 +12,32 @@ div {
     margin: 0;
 }
 
+.start-screen {
+    width: 768px;
+    height: 672px;
+    background-image: url('../assets/start-screen.png');
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    z-index: 1;
+}
+
+.game-over-screen {
+    width: 768px;
+    height: 672px;
+    background-image: url('../assets/game-over-screen.png');
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    z-index: 1;
+}
+
+.overlay > .score {
+    position: absolute;
+    top: 72px;
+    left: 336px;
+}
+
 .screen {
     width: 768px;
     height: 672px;

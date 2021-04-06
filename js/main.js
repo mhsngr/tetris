@@ -1,10 +1,18 @@
 const col = 10;
 const row = 20;
-
 const game = new Game();
-game.start();
 
-function keyboard(event) {
+document.addEventListener('keydown', start);
+
+function start(event) {
+    if(event.keyCode === 13) {
+        document.removeEventListener('keydown', start);
+        document.addEventListener('keydown', controls);
+        game.start();
+    }
+}
+
+function controls(event) {
     switch (event.keyCode) {
         case 37:
             game.board.currentTetromino.moveLeft();
@@ -14,8 +22,7 @@ function keyboard(event) {
             break;
         case 40:
             if(!game.board.currentTetromino.softDrop()) {
-                clearInterval(game.run);
-                console.log('game over');
+                game.over();
             }
             break;
         case 38:
@@ -23,4 +30,3 @@ function keyboard(event) {
             break;
     }
 }
-document.addEventListener('keydown', keyboard);

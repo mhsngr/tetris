@@ -3,6 +3,7 @@ class Game {
         this.level = 0;
         this.rows = 0;
         this.score = 0;
+        this.top = 0;
         this.speed = 720;
     }
     start() {
@@ -10,11 +11,11 @@ class Game {
         this.board.draw();
         this.board.drawInfo();
         this.run = setInterval(this.drop, this.speed);
+        document.querySelector('.overlay').className = 'overlay';
     }
     drop() {
         if (!game.board.currentTetromino.drop()) {
-            clearInterval(game.run);
-            console.log('game over');
+            game.over();
         }
     }
     levelUp() {
@@ -34,5 +35,17 @@ class Game {
         if (this.level >= 19) this.speed = 20;
         clearInterval(game.run);
         this.run = setInterval(this.drop, this.speed);
+    }
+    over() {
+        clearInterval(game.run);
+        document.removeEventListener('keydown', controls);
+        document.addEventListener('keydown', start);
+        document.querySelector('.overlay > .score').innerText = game.score.toString().padStart(6, 0);
+        document.querySelector('.overlay').className = 'overlay game-over-screen';
+        if (this.score > this.top) this.top = this.score;
+        this.level = 0;
+        this.rows = 0;
+        this.score = 0;
+        this.speed = 720;
     }
 }
