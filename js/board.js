@@ -49,20 +49,13 @@ class Board {
         game.levelUp();
     }
     drawInfo() {
-        document.querySelector('.score').innerText = game.score;
-        document.querySelector('.level').innerText = game.level;
-        document.querySelector('.lines').innerText = game.rows;
-        for (let i = 0; i < 4; i++) {
-            for (let j = 0; j < 4; j++) {
-                document.querySelector(`.next > .row.y${i} > .col.x${j}`).className = `col x${j} c0`;
-            }
-        }
-        for (let i = 0; i < this.nextTetromino.shape.length; i++) {
-            for (let j = 0; j < this.nextTetromino.shape.length; j++) {
-                if (this.nextTetromino.shape[i][j] > 0) {
-                    document.querySelector(`.next > .row.y${i} > .col.x${j}`).className = `col x${j} c${this.nextTetromino.shape[i][j]}`;
-                }
-            }
-        }
+        document.querySelector('.score').innerText = game.score.toString().padStart(6, 0);
+        document.querySelector('.level').innerText = game.level.toString().padStart(2, 0);
+        document.querySelector('.lines').innerText = game.rows.toString().padStart(2, 0);
+        if (this.nextTetromino.shape[0][0] > 0) document.querySelector('.next').className = `next n${this.nextTetromino.shape[0][0]}`;
+        if (this.nextTetromino.shape[1][0] > 0) document.querySelector('.next').className = `next n${this.nextTetromino.shape[1][0]}`;
+    }
+    zeros(number, size) {
+
     }
 }

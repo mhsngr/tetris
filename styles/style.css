@@ -1,24 +1,67 @@
-.container {
-    display: flex;
-    flex-direction: row;
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+    background-color: black;
 }
 
+div {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 24px;
+    color: white;
+    padding: 0;
+    margin: 0;
+}
+
+.screen {
+    width: 768px;
+    height: 672px;
+    background-image: url('../assets/screen.png');
+    padding: 0;
+    margin: 0;
+    position: absolute;
+}
 
 .board {
-    width: 300px;
-    height: 600px;
-    border: 1px solid black;
-    margin: 30px;
+    width: 240px;
+    height: 480px;
+    position: absolute;
+    top: 120px;
+    left: 288px;
+
 }
 
-.info {
-    margin: 30px;
+.top {
+    position: absolute;
+    top: 96px;
+    left: 576px;
+}
+
+.score {
+    position: absolute;
+    top: 168px;
+    left: 576px;
+}
+
+.lines {
+    position: absolute;
+    top: 48px;
+    left: 456px;
+}
+
+.level {
+    position: absolute;
+    top: 480px;
+    left: 624px;
 }
 
 .next {
-    width: 120px;
-    height: 120px;
-    border: 1px solid black;
+    width: 93px;
+    height: 45px;
+    position: absolute;
+    top: 336px;
+    left: 576px;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .row {
@@ -27,37 +70,63 @@
 }
 
 .col {
-    height: 30px;
-    width: 30px;
+    height: 24px;
+    width: 24px;
 }
 
 .c1 {
-    background-color: cyan;
-}
-.c1 {
-    background-color: cyan;
+    background-image: url('../assets/brick-1.png');
 }
 
 .c2 {
-    background-color: blue;
+    background-image: url('../assets/brick-2.png');
 }
 
 .c3 {
-    background-color: orange;
+    background-image: url('../assets/brick-3.png');
 }
 
 .c4 {
-    background-color: yellow;
+    background-image: url('../assets/brick-1.png');
 }
 
 .c5 {
-    background-color: green;
+    background-image: url('../assets/brick-2.png');
 }
 
 .c6 {
-    background-color: purple;
+    background-image: url('../assets/brick-3.png');
 }
 
 .c7 {
-    background-color: red;
+    background-image: url('../assets/brick-1.png');
+}
+
+.n1 {
+    background-image: url('../assets/tetromino-1.png');
+}
+
+.n2 {
+    background-image: url('../assets/tetromino-2.png');
+    
+}
+
+.n3 {
+    background-image: url('../assets/tetromino-3.png');
+}
+
+.n4 {
+    background-image: url('../assets/tetromino-4.png');
+}
+
+.n5 {
+    background-image: url('../assets/tetromino-5.png');
+}
+
+.n6 {
+    background-image: url('../assets/tetromino-6.png');
+}
+
+.n7 {
+    background-image: url('../assets/tetromino-7.png');
 }
