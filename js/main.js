@@ -28,5 +28,9 @@ function controls(event) {
         case 38:
             game.board.currentTetromino.rotate();
             break;
+        case 32:
+            if (game.audioMusic.paused) game.audioMusic.play();
+            else game.audioMusic.pause()
+            break;
     }
 }

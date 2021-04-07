@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 body {
-    background-color: black;
+    background-color: darkslategray;
     font-family: 'Press Start 2P', cursive;
     font-size: 24px;
     color: white;
@@ -11,18 +11,22 @@ body {
     position: fixed;
     top: 50%;
     left: 50%;
-    margin-top: -384px;
-    margin-left: -336px;
+    margin-top: -434px;
+    margin-left: -560px;
+    padding: 50px;
+    width: 768px;
+    height: 672px;
+    background-color: black;
 }
 
 img {
-    width: 1050px;
+    width: 1350px;
     z-index: 2;
     position: fixed;
     top: 50%;
     left: 50%;
     margin-top: -490px;
-    margin-left: -476px;
+    margin-left: -675px;
 }
 
 .start-screen {
@@ -33,6 +37,16 @@ img {
     margin: 0;
     position: absolute;
     z-index: 1;
+}
+
+.start-info {
+    width: 450px;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    z-index: 2;
+    top: 360px;
+    left: 169px;
 }
 
 .game-over-screen {

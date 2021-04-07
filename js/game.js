@@ -16,6 +16,16 @@ class Game {
         this.audioTetris = new Audio('assets/tetris.mp3');
         this.audioMusic = new Audio('assets/music.mp3');
         this.audioGameover = new Audio('assets/gameover.mp3');
+        // this.audioMove.volume = 0.2;
+        // this.audioRotate.volume = 0.2;
+        // this.audioLock.volume = 0.2;
+        // this.audioClear.volume = 0.2;
+        // this.audioLevelup.volume = 0.2;
+        // this.audioStart.volume = 0.2;
+        // this.audioEnding.volume = 0.2;
+        // this.audioTetris.volume = 0.2;
+        // this.audioMusic.volume = 0.2;
+        // this.audioGameover.volume = 0.2;
     }
     start() {
         this.board = new Board(col, row);
@@ -27,6 +37,7 @@ class Game {
         game.audioMusic.loop = true;
         this.run = setInterval(this.drop, this.speed);
         document.querySelector('.overlay').className = 'overlay';
+        document.querySelector('.start-info').style.visibility = 'hidden';
     }
     drop() {
         if (!game.board.currentTetromino.drop()) {
