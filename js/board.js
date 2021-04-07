@@ -27,8 +27,9 @@ class Board {
                 }
             }
         }
-        if (this.currentTetromino.shape[0][0] > 0) game.stats[this.currentTetromino.shape[0][0] - 1]++;
-        if (this.currentTetromino.shape[1][0] > 0) game.stats[this.currentTetromino.shape[1][0] - 1]++;
+        for (let i = 1; i <= shapes.length; i++) {
+            if (this.currentTetromino.shape[1].includes(i)) game.stats[i - 1]++;
+        }
         this.currentTetromino = Object.assign(this.currentTetromino, this.nextTetromino);
         this.nextTetromino = new Tetromino();
         game.audioLock.cloneNode(true).play();
@@ -62,6 +63,7 @@ class Board {
         game.levelUp();
     }
     drawInfo() {
+        console.log(game.stats);
         document.querySelector('.top').innerText = game.top.toString().padStart(6, 0);
         document.querySelector('.score').innerText = game.score.toString().padStart(6, 0);
         document.querySelector('.level').innerText = game.level.toString().padStart(2, 0);
