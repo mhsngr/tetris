@@ -15,7 +15,7 @@ class Board {
             }
         }
         this.currentTetromino.draw();
-        this.drawInfo();  
+        this.drawInfo();
     }
     lock() {
         for (let i = 0; i < this.currentTetromino.shape.length; i++) {
@@ -35,12 +35,11 @@ class Board {
         game.audioLock.cloneNode(true).play();
         this.currentTetromino.drop();
     }
-    clearRows() {
+    collapse() {
         let rows = 0;
         this.grid.forEach((row, y) => {
             if (row.every(value => value > 0)) {
-                this.grid.splice(y, 1);
-                this.grid.unshift(Array(col).fill(0));
+                document.querySelector(`.board > .row.y${y}`).classList.toggle('collapse');
                 rows++;
             }
         });
@@ -62,6 +61,19 @@ class Board {
             game.audioTetris.cloneNode(true).play();
         }
         game.levelUp();
+    }
+    clearRows() {
+        let rows = [];
+        this.grid.forEach((row, y) => {
+            if (row.every(value => value > 0)) {
+                this.grid.splice(y, 1);
+                this.grid.unshift(Array(col).fill(0));
+                rows.push(y);
+            }
+        });
+        for (let row of rows) {
+            document.querySelector(`.board > .row.y${row}`).className = `row y${row}`;
+        }  
     }
     drawInfo() {
         document.querySelector('.top').innerText = game.top.toString().padStart(6, 0);

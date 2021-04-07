@@ -76,7 +76,8 @@ class Tetromino {
         if (!game.board.currentTetromino.validMove(0, 1)) {
             if (game.board.currentTetromino.y === 1) return false;
             game.board.lock();
-            game.board.clearRows();
+            game.board.collapse();
+            setTimeout(() => {game.board.clearRows()}, 500);
         }
         game.board.draw();
         return true;
@@ -88,7 +89,8 @@ class Tetromino {
         if (!game.board.currentTetromino.validMove(0, 1)) {
             if (game.board.currentTetromino.y === 1) return false;
             game.board.lock();
-            game.board.clearRows();
+            game.board.collapse();
+            setTimeout(() => {game.board.clearRows()}, 500);
         }
         game.board.draw();
         return true;

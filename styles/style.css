@@ -80,7 +80,9 @@ img {
     position: absolute;
     top: 72px;
     left: 288px;
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .top {
@@ -125,6 +127,11 @@ img {
     line-height: 48px;;
 }
 
+.col {
+    height: 24px;
+    width: 24px;
+}
+
 .row {
     display: flex;
     flex-direction: row;
@@ -134,9 +141,17 @@ img {
     visibility: hidden;
 }
 
-.col {
-    height: 24px;
-    width: 24px;
+.row.collapse {
+    animation: collapse 0.55s;
+}
+
+@keyframes collapse {
+    0% {
+        max-width: 768px;
+    }
+    100% {
+        max-width: 0px;
+    }
 }
 
 .c1 {
