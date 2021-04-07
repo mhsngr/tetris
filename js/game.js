@@ -10,25 +10,16 @@ class Game {
         this.audioRotate = new Audio('assets/rotate.mp3');
         this.audioLock = new Audio('assets/lock.mp3');
         this.audioClear = new Audio('assets/clear.mp3');
-        this.audioLevelup = new Audio('assets/levelup.mp3');
+        // this.audioLevelup = new Audio('assets/levelup.mp3');
         this.audioStart = new Audio('assets/start.mp3');
         this.audioEnding = new Audio('assets/ending.mp3');
         this.audioTetris = new Audio('assets/tetris.mp3');
         this.audioMusic = new Audio('assets/music.mp3');
         this.audioGameover = new Audio('assets/gameover.mp3');
-        // this.audioMove.volume = 0.2;
-        // this.audioRotate.volume = 0.2;
-        // this.audioLock.volume = 0.2;
-        // this.audioClear.volume = 0.2;
-        // this.audioLevelup.volume = 0.2;
-        // this.audioStart.volume = 0.2;
-        // this.audioEnding.volume = 0.2;
-        // this.audioTetris.volume = 0.2;
-        // this.audioMusic.volume = 0.2;
-        // this.audioGameover.volume = 0.2;
     }
     start() {
         this.board = new Board(col, row);
+        this.board.currentTetromino.drop();
         this.board.draw();
         this.board.drawInfo();
         game.audioEnding.pause()

@@ -1,5 +1,5 @@
 const col = 10;
-const row = 20;
+const row = 22;
 const game = new Game();
 
 document.addEventListener('keydown', start);

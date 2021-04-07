@@ -33,6 +33,7 @@ class Board {
         this.currentTetromino = Object.assign(this.currentTetromino, this.nextTetromino);
         this.nextTetromino = new Tetromino();
         game.audioLock.cloneNode(true).play();
+        this.currentTetromino.drop();
     }
     clearRows() {
         let rows = 0;
@@ -63,7 +64,6 @@ class Board {
         game.levelUp();
     }
     drawInfo() {
-        console.log(game.stats);
         document.querySelector('.top').innerText = game.top.toString().padStart(6, 0);
         document.querySelector('.score').innerText = game.score.toString().padStart(6, 0);
         document.querySelector('.level').innerText = game.level.toString().padStart(2, 0);

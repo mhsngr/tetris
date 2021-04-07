@@ -41,8 +41,8 @@ class Tetromino {
         this.shape = shapes[Math.floor(Math.random() * 7)].map(y => y.slice());
         if (this.shape.length < 3) this.x = 4;
         else this.x = 3;
-        if (this.shape[1].length > 3) this.y = -1;
-        else this.y = 0;
+        if (this.shape.length > 3) this.y = 0;
+        else this.y = 1;
     }
     draw() {
         for (let i = 0; i < this.shape.length; i++) {
@@ -74,7 +74,7 @@ class Tetromino {
             game.audioMove.cloneNode(true).play();
         }
         if (!game.board.currentTetromino.validMove(0, 1)) {
-            if (game.board.currentTetromino.y === 0) return false;
+            if (game.board.currentTetromino.y === 1) return false;
             game.board.lock();
             game.board.clearRows();
         }
@@ -86,7 +86,7 @@ class Tetromino {
             game.board.currentTetromino.y++;
         }
         if (!game.board.currentTetromino.validMove(0, 1)) {
-            if (game.board.currentTetromino.y === 0) return false;
+            if (game.board.currentTetromino.y === 1) return false;
             game.board.lock();
             game.board.clearRows();
         }
@@ -100,9 +100,6 @@ class Tetromino {
             }
         }
         this.shape.forEach(row => row.reverse());
-        if (this.y < 0) {
-            while (!this.validMove(0, 0)) this.y++;
-        }
         if (this.x < this.shape.length) {
             while (!this.validMove(0, 0)) this.x++;
         }
