@@ -56,12 +56,14 @@ class Tetromino {
     moveLeft() {
         if (this.validMove(-1, 0)) {
             this.x--;
+            game.audioMove.cloneNode(true).play();
         }
         game.board.draw()
     }
     moveRight() {
         if (this.validMove(1, 0)) {
             this.x++;
+            game.audioMove.cloneNode(true).play();
         }
         game.board.draw()
     }
@@ -69,6 +71,7 @@ class Tetromino {
         if (game.board.currentTetromino.validMove(0, 1)) {
             game.board.currentTetromino.y++;
             game.score++;
+            game.audioMove.cloneNode(true).play();
         }
         if (!game.board.currentTetromino.validMove(0, 1)) {
             if (game.board.currentTetromino.y === 0) return false;
@@ -107,6 +110,7 @@ class Tetromino {
             while (!this.validMove(0, 0)) this.x--;
         }
         game.board.draw()
+        game.audioRotate.cloneNode(true).play();
     }
     validMove(dx, dy) {
         for (let i = 0; i < this.shape.length; i++) {

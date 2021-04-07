@@ -6,11 +6,25 @@ class Game {
         this.top = 0;
         this.speed = 720;
         this.stats = [0, 0, 0, 0, 0, 0, 0]
+        this.audioMove = new Audio('assets/move.mp3');
+        this.audioRotate = new Audio('assets/rotate.mp3');
+        this.audioLock = new Audio('assets/lock.mp3');
+        this.audioClear = new Audio('assets/clear.mp3');
+        this.audioLevelup = new Audio('assets/levelup.mp3');
+        this.audioStart = new Audio('assets/start.mp3');
+        this.audioEnding = new Audio('assets/ending.mp3');
+        this.audioTetris = new Audio('assets/tetris.mp3');
+        this.audioMusic = new Audio('assets/music.mp3');
+        this.audioGameover = new Audio('assets/gameover.mp3');
     }
     start() {
         this.board = new Board(col, row);
         this.board.draw();
         this.board.drawInfo();
+        game.audioEnding.pause()
+        game.audioStart.play();
+        game.audioMusic.play();
+        game.audioMusic.loop = true;
         this.run = setInterval(this.drop, this.speed);
         document.querySelector('.overlay').className = 'overlay';
     }
@@ -30,15 +44,18 @@ class Game {
         if (this.level === 7) this.speed = 220;
         if (this.level === 8) this.speed = 140;
         if (this.level === 9) this.speed = 100;
-        if (12 >= this.level >= 10) this.speed = 80;
-        if (15 >= this.level >= 13) this.speed = 60;
-        if (18 >= this.level >= 16) this.speed = 40;
+        if (this.level >= 10 && this.level <= 12) this.speed = 80;
+        if (this.level >= 13 && this.level <= 15) this.speed = 60;
+        if (this.level >= 16 && this.level <= 18) this.speed = 40;
         if (this.level >= 19) this.speed = 20;
         clearInterval(game.run);
         this.run = setInterval(this.drop, this.speed);
     }
     over() {
         clearInterval(game.run);
+        game.audioEnding.play();
+        game.audioMusic.pause();
+        game.audioGameover.play();
         document.removeEventListener('keydown', controls);
         document.addEventListener('keydown', start);
         document.querySelector('.end-score').innerText = game.score.toString().padStart(6, 0);

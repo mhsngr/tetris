@@ -31,6 +31,7 @@ class Board {
         if (this.currentTetromino.shape[1][0] > 0) game.stats[this.currentTetromino.shape[1][0] - 1]++;
         this.currentTetromino = Object.assign(this.currentTetromino, this.nextTetromino);
         this.nextTetromino = new Tetromino();
+        game.audioLock.cloneNode(true).play();
     }
     clearRows() {
         let rows = 0;
@@ -42,10 +43,22 @@ class Board {
             }
         });
         game.rows += rows;
-        if (rows === 1) game.score += 40 * (game.level + 1)
-        if (rows === 2) game.score += 100 * (game.level + 1)
-        if (rows === 3) game.score += 300 * (game.level + 1)
-        if (rows === 4) game.score += 1200 * (game.level + 1)
+        if (rows === 1) {
+            game.score += 40 * (game.level + 1);
+            game.audioClear.cloneNode(true).play();
+        }
+        if (rows === 2) {
+            game.score += 100 * (game.level + 1);
+            game.audioClear.cloneNode(true).play();
+        }
+        if (rows === 3) {
+            game.score += 300 * (game.level + 1);
+            game.audioClear.cloneNode(true).play();
+        }
+        if (rows === 4) {
+            game.score += 1200 * (game.level + 1);
+            game.audioTetris.cloneNode(true).play();
+        }
         game.levelUp();
     }
     drawInfo() {
