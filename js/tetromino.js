@@ -96,20 +96,22 @@ class Tetromino {
         return true;
     }
     rotate() {
-        for (let i in this.shape) {
-            for (let j = 0; j < i; j++) {
-                [this.shape[j][i], this.shape[i][j]] = [this.shape[i][j], this.shape[j][i]];
+        if (this.validRotation()) {
+            for (let i in this.shape) {
+                for (let j = 0; j < i; j++) {
+                    [this.shape[j][i], this.shape[i][j]] = [this.shape[i][j], this.shape[j][i]];
+                }
             }
+            this.shape.forEach(row => row.reverse());
+            if (this.x < this.shape.length) {
+                while (!this.validMove(0, 0)) this.x++;
+            }
+            if (this.x > this.shape.length) {
+                while (!this.validMove(0, 0)) this.x--;
+            }
+            game.board.draw()
+            game.audioRotate.cloneNode(true).play();
         }
-        this.shape.forEach(row => row.reverse());
-        if (this.x < this.shape.length) {
-            while (!this.validMove(0, 0)) this.x++;
-        }
-        if (this.x > this.shape.length) {
-            while (!this.validMove(0, 0)) this.x--;
-        }
-        game.board.draw()
-        game.audioRotate.cloneNode(true).play();
     }
     validMove(dx, dy) {
         for (let i = 0; i < this.shape.length; i++) {
@@ -124,5 +126,22 @@ class Tetromino {
             }
         }
         return true;
+    }
+    validRotation() {
+        let rotable = true;
+        for (let i in this.shape) {
+            for (let j = 0; j < i; j++) {
+                [this.shape[j][i], this.shape[i][j]] = [this.shape[i][j], this.shape[j][i]];
+            }
+        }
+        this.shape.forEach(row => row.reverse());
+        if (!this.validMove(0, 0) && !this.validMove(1, 0) && !this.validMove(2, 0) && !this.validMove(-1, 0) && !this.validMove(-2, 0)) rotable = false;
+        this.shape.forEach(row => row.reverse());
+        for (let i in this.shape) {
+            for (let j = 0; j < i; j++) {
+                [this.shape[j][i], this.shape[i][j]] = [this.shape[i][j], this.shape[j][i]];
+            }
+        }
+        return rotable;
     }
 }
