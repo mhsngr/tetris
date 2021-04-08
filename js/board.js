@@ -9,8 +9,8 @@ class Board {
         this.nextTetromino = new Tetromino();
     }
     draw() {
-        for (let i = 0; i < this.grid.length; i++) {
-            for (let j = 0; j < this.grid[i].length; j++) {
+        for (let i in this.grid) {
+            for (let j in this.grid[i]) {
                 document.querySelector(`.board > .row.y${i} > .col.x${j}`).className = `col x${j} c${this.grid[i][j]}`;
             }
         }
@@ -72,7 +72,7 @@ class Board {
             }
         });
         for (let row of rows) {
-            document.querySelector(`.board > .row.y${row}`).className = `row y${row}`;
+            document.querySelector(`.board > .row.y${row}`).classList.toggle('collapse');
         }  
     }
     drawInfo() {

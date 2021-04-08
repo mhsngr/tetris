@@ -96,7 +96,7 @@ class Tetromino {
         return true;
     }
     rotate() {
-        for (let i = 0; i < this.shape.length; i++) {
+        for (let i in this.shape) {
             for (let j = 0; j < i; j++) {
                 [this.shape[j][i], this.shape[i][j]] = [this.shape[i][j], this.shape[j][i]];
             }

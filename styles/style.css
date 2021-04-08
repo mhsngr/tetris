@@ -142,7 +142,7 @@ img {
 }
 
 .row.collapse {
-    animation: collapse 0.55s;
+    animation: collapse 0.5s;
 }
 
 @keyframes collapse {
