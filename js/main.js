@@ -13,20 +13,26 @@ function start(event) {
 function controls(event) {
     switch (event.keyCode) {
         case 37:
-            game.board.currentTetromino.moveLeft();
+            if (!game.paused) game.board.currentTetromino.moveLeft();
             break;
         case 39:
-            game.board.currentTetromino.moveRight();
+            if (!game.paused) game.board.currentTetromino.moveRight();
             break;
         case 40:
-            if (!game.board.currentTetromino.softDrop()) game.over();
+            if (!game.paused) {
+                if (!game.board.currentTetromino.softDrop()) game.over();
+            }
             break;
         case 38:
-            game.board.currentTetromino.rotate();
+            if (!game.paused) game.board.currentTetromino.rotate();
             break;
         case 32:
             if (game.audioMusic.paused) game.audioMusic.play();
             else game.audioMusic.pause()
+            break;
+        case 13:
+            if (game.paused) game.resume();
+            else game.pause();
             break;
     }
 }

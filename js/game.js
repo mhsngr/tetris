@@ -18,6 +18,7 @@ class Game {
         this.audioTetris = new Audio('assets/tetris.mp3');
         this.audioMusic = new Audio('assets/music.mp3');
         this.audioGameover = new Audio('assets/gameover.mp3');
+        this.paused = false;
     }
     start() {
         this.board = new Board(col, row);
@@ -68,5 +69,18 @@ class Game {
         this.score = 0;
         this.speed = 720;
         this.stats = [0, 0, 0, 0, 0, 0, 0]
+    }
+    pause() {
+        this.paused = true;
+        clearInterval(this.run);
+        this.audioMusic.pause();
+        this.audioStart.play();
+        document.querySelector('.pause').style.visibility = 'visible';
+    }
+    resume() {
+        this.paused = false;
+        this.run = setInterval(this.drop, this.speed);
+        this.audioMusic.play();
+        document.querySelector('.pause').style.visibility = 'hidden';
     }
 }

@@ -40,13 +40,27 @@ img {
 }
 
 .start-info {
-    width: 450px;
+    width: 480px;
     padding: 0;
     margin: 0;
     position: absolute;
     z-index: 2;
     top: 360px;
     left: 169px;
+}
+
+.pause {
+    background-color: black;
+    width: 768px;
+    height: 672px;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
 }
 
 .game-over-screen {
