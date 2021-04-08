@@ -13,6 +13,7 @@ class Game {
         this.audioRotate = new Audio('assets/rotate.mp3');
         this.audioLock = new Audio('assets/lock.mp3');
         this.audioClear = new Audio('assets/clear.mp3');
+        this.audioLevelup = new Audio('assets/levelup.mp3');
         this.audioStart = new Audio('assets/start.mp3');
         this.audioEnding = new Audio('assets/ending.mp3');
         this.audioTetris = new Audio('assets/tetris.mp3');
@@ -37,7 +38,13 @@ class Game {
         if (!game.board.currentTetromino.drop()) game.over();
     }
     levelUp() {
+        let temp = this.level;
         this.level = Math.floor(this.rows / 10);
+        if (this.level > temp) {
+            this.audioLevelup.play();
+            document.querySelector('.screen').classList.toggle('levelup');
+            setTimeout(() => {document.querySelector('.screen').classList.toggle('levelup');}, 500);
+        }
         if (this.level === 1) this.speed = 640;
         if (this.level === 2) this.speed = 580;
         if (this.level === 3) this.speed = 500;
