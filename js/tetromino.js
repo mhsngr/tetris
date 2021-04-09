@@ -103,11 +103,11 @@ class Tetromino {
                 }
             }
             this.shape.forEach(row => row.reverse());
-            if (this.x < this.shape.length) {
-                while (!this.validMove(0, 0)) this.x++;
-            }
-            if (this.x > this.shape.length) {
-                while (!this.validMove(0, 0)) this.x--;
+            if (!this.validMove(0, 0)) {
+                if (this.validMove(1, 0)) this.x++;
+                if (this.validMove(2, 0)) this.x += 2;
+                if (this.validMove(-1, 0)) this.x--;
+                if (this.validMove(-2, 0)) this.x -= 2;
             }
             game.board.draw()
             game.audioRotate.cloneNode(true).play();
